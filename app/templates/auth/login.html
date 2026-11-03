@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3 text-center"><i class="bi bi-person-circle"></i> Iniciar sesión</h2>
+        <p class="text-center text-muted small">Cartelera Digital</p>
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email" name="email" class="form-control" required autofocus>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+          <button class="btn btn-primary w-100">Ingresar</button>
+        </form>
+        <p class="text-muted small mt-3 mb-0 text-center">
+          Usuario de prueba: <code>admin@admin.com</code> / <code>admin123</code>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

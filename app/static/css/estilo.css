@@ -1,0 +1,79 @@
+/* Cartelera Digital - tema rojo en ventana centrada */
+:root {
+  --cd-primario: #B71C1C;
+  --cd-primario-osc: #7F1111;
+  --cd-acento: #FFC107;
+  --cd-fondo: #FBF4F4;
+  --cd-texto: #231A1A;
+  --cd-suave: #5C4A4A;
+  --cd-pie: #4A0D0D;
+  --cd-borde: #E8D3D3;
+
+  --bs-primary: var(--cd-primario);
+  --bs-primary-rgb: 183, 28, 28;
+  --bs-link-color: #A31515;
+  --bs-link-hover-color: var(--cd-primario-osc);
+  --bs-body-color: var(--cd-texto);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif; color: var(--cd-texto); }
+.text-muted, .text-secondary { color: var(--cd-suave) !important; }
+
+/* Escritorio (fondo) y ventana pequeña centrada */
+.cd-escritorio { display: flex; align-items: center; justify-content: center; padding: 1.25rem;
+  background: radial-gradient(circle at 20% 15%, #8E1B1B 0%, #4A0D0D 60%, #2B0707 100%); }
+.cd-ventana { width: 100%; max-width: 860px; height: min(92vh, 720px); display: flex; flex-direction: column;
+  background: var(--cd-fondo); border-radius: .9rem; overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.12); }
+
+/* Barra de título tipo ventana */
+.cd-barra { display: flex; align-items: center; gap: .45rem; background: #2B0707; color: #FDECEC; padding: .5rem .9rem; font-size: .85rem; }
+.cd-barra .punto { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.p1 { background: #FF5F56; } .p2 { background: #FFBD2E; } .p3 { background: #27C93F; }
+.cd-barra-titulo { margin-left: .6rem; font-weight: 600; letter-spacing: .3px; }
+
+/* Cabecera institucional */
+.cd-cabecera { flex: 0 0 auto; background: linear-gradient(135deg, var(--cd-primario-osc), var(--cd-primario)); color: #fff; border-bottom: 4px solid var(--cd-acento); }
+.cd-cabecera .marca { font-weight: 700; letter-spacing: .5px; }
+.cd-cabecera small { color: #FFE9E9; }
+.cd-cabecera .bi { font-size: 2rem !important; }
+
+/* Menú */
+.cd-nav { flex: 0 0 auto; background: #fff; border-bottom: 1px solid var(--cd-borde); padding: 0; }
+.cd-nav .nav-link { color: var(--cd-texto); font-weight: 600; padding: .7rem .9rem; border-bottom: 3px solid transparent; }
+.cd-nav .nav-link:hover, .cd-nav .nav-link:focus { color: var(--cd-primario); border-bottom-color: var(--cd-primario); }
+.cd-nav .navbar-text { color: var(--cd-suave); }
+
+/* Área de contenido con desplazamiento interno */
+.cd-contenido { flex: 1 1 auto; overflow-y: auto; }
+
+/* Pie de página */
+.cd-pie { flex: 0 0 auto; background: var(--cd-pie); color: #F5DCDC; font-size: .85rem; }
+
+/* Botones */
+.btn-primary { --bs-btn-bg: var(--cd-primario); --bs-btn-border-color: var(--cd-primario); --bs-btn-hover-bg: var(--cd-primario-osc); --bs-btn-hover-border-color: var(--cd-primario-osc); --bs-btn-active-bg: var(--cd-primario-osc); --bs-btn-active-border-color: var(--cd-primario-osc); --bs-btn-color: #fff; }
+.btn-outline-primary { --bs-btn-color: var(--cd-primario); --bs-btn-border-color: var(--cd-primario); --bs-btn-hover-bg: var(--cd-primario); --bs-btn-hover-border-color: var(--cd-primario); --bs-btn-hover-color: #fff; }
+.btn-warning { --bs-btn-color: #231A1A; }
+.btn-outline-dark { --bs-btn-color: var(--cd-texto); }
+
+/* Tarjetas y tablas */
+.card { border: 1px solid var(--cd-borde); border-radius: .75rem; }
+.card .card-title { color: var(--cd-primario-osc); font-weight: 700; }
+.card-footer { background: #FDF8F8; }
+.table thead.table-dark { --bs-table-bg: var(--cd-primario-osc); --bs-table-color: #fff; }
+.table-hover > tbody > tr:hover > * { --bs-table-hover-bg: #F9E3E3; }
+.badge.text-bg-secondary { background-color: #5C4A4A !important; color: #fff !important; }
+
+.cd-titulo { color: var(--cd-primario-osc); font-weight: 700; border-left: 5px solid var(--cd-acento); padding-left: .75rem; }
+.cd-hero { background: #fff; border: 1px solid var(--cd-borde); border-left: 6px solid var(--cd-primario); border-radius: .75rem; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+.cd-hero h2 { color: var(--cd-primario-osc); font-weight: 700; }
+
+/* Foco visible */
+a:focus-visible, button:focus-visible, .form-control:focus, .form-select:focus { outline: 3px solid #1D4ED8; outline-offset: 2px; box-shadow: none; }
+
+/* Pantallas muy pequeñas: la ventana ocupa todo */
+@media (max-width: 576px) {
+  .cd-escritorio { padding: 0; }
+  .cd-ventana { height: 100vh; max-width: 100%; border-radius: 0; }
+}

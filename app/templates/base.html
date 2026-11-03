@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Cartelera Digital{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/estilo.css') }}" rel="stylesheet">
+</head>
+<body class="cd-escritorio">
+<div class="cd-ventana">
+
+  <!-- BARRA DE TÍTULO DE LA VENTANA -->
+  <div class="cd-barra">
+    <span class="punto p1"></span><span class="punto p2"></span><span class="punto p3"></span>
+    <span class="cd-barra-titulo">Cartelera Digital</span>
+  </div>
+
+
+  <!-- CABECERA INSTITUCIONAL -->
+  <header class="cd-cabecera py-3">
+    <div class="px-4 d-flex align-items-center">
+      <i class="bi bi-pin-angle-fill fs-1 me-3"></i>
+      <div>
+        <h1 class="h4 mb-0 marca">Cartelera Digital</h1>
+        <small>Tablón de anuncios · Universidad Pública de El Alto · Ingeniería de Sistemas · TEM-742</small>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENÚ DE NAVEGACIÓN -->
+  <nav class="navbar navbar-expand-lg cd-nav">
+    <div class="container-fluid px-3">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('main.inicio') }}"><i class="bi bi-house"></i> Inicio</a></li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('anuncios.lista') }}"><i class="bi bi-card-text"></i> Anuncios</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('categorias.lista') }}"><i class="bi bi-tags"></i> Categorías</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('usuarios.lista') }}"><i class="bi bi-people"></i> Usuarios</a></li>
+          {% endif %}
+        </ul>
+        <ul class="navbar-nav">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item"><span class="navbar-text me-3">{{ current_user.nombre }}</span></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-right"></i> Salir</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}"><i class="bi bi-box-arrow-in-right"></i> Iniciar sesión</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ÁREA DE CONTENIDO -->
+  <main class="cd-contenido px-4 py-3">
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% for categoria, mensaje in mensajes %}
+        <div class="alert alert-{{ categoria }} alert-dismissible fade show" role="alert">
+          {{ mensaje }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endwith %}
+
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="cd-pie text-center py-2">
+    <small>© 2026 Cartelera Digital · Tecnologías Emergentes II · Flask</small>
+  </footer>
+
+</div><!-- /ventana -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
